@@ -56,6 +56,65 @@ Signed and unsigned profiles can be imported.
 
 ![Import any profile](/Images/ImportProfile.png "Import profiles")
 
+## Command-line interface
+
+Run the executable inside the app bundle with `--cli`.
+
+```bash
+PPPC="/Applications/PPPC Utility.app/Contents/MacOS/PPPC Utility"
+"$PPPC" --cli help
+"$PPPC" --cli inspect --app "/Applications/Example.app"
+"$PPPC" --cli generate \
+  --app "/Applications/Example.app" \
+  --service Accessibility=Allow \
+  --service SystemPolicyAllFiles=Allow \
+  --identifier com.example.pppc --name "Example permissions" \
+  --output ./example.mobileconfig
+```
+
+`inspect` returns JSON with the application identifier, display name, and designated code requirement.
+For multiple applications or Apple Events rules, use a JSON configuration file:
+
+```json
+{
+  "metadata": {
+    "identifier": "com.example.pppc",
+    "name": "Example permissions",
+    "organization": "Example Organization"
+  },
+  "applications": [
+    {
+      "path": "/Applications/Example.app",
+      "services": {
+        "Accessibility": "Allow",
+        "AppleEvents": "Allow"
+      },
+      "receiver": { "path": "/System/Applications/Mail.app" }
+    }
+  ]
+}
+```
+
+```bash
+"$PPPC" --cli generate --config ./permissions.json --output ./example.mobileconfig
+"$PPPC" --cli modify --input ./example.mobileconfig \
+  --config ./permissions.json --output ./updated.mobileconfig
+"$PPPC" --cli identities
+"$PPPC" --cli sign --input ./updated.mobileconfig \
+  --output ./signed.mobileconfig --identity "Exact certificate name"
+```
+
+- Configuration entries accept either `path` or both `identifier` and `codeRequirement`.
+- Metadata flags override configuration metadata. One `--app` with repeated `--service` flags can add an application to the configuration.
+- Authorization values are `Allow`, `Deny`, and `AllowStandardUserToSetSystemService`. The CLI rejects values that the service does not support.
+- For `modify`, use `Remove` to delete a rule. Explicit identifiers do not need a code requirement for removal.
+- Apple Events rules require a `receiver` in the JSON configuration.
+- `modify` requires exactly one PPPC payload. It preserves UUIDs, unrelated payloads, and unknown fields. Rules match by application and receiver identifiers and types.
+- `modify` accepts unsigned or CMS-signed profiles but does not verify the signature. Its output is unsigned unless you supply `--sign`.
+- Both `generate` and `modify` accept `--sign "Exact certificate name"`. Use `identities` to list available names. Duplicate names cause an error.
+- Keychain access can require authorization from macOS.
+- File output is atomic and replaces an existing destination. Success returns exit status `0`. Errors go to stderr with exit status `1`.
+
 ## Development
 
 ### Pre-commit Hook

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD1000000000000000000001 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1000000000000000000002 /* CLI.swift */; };
+		CD1000000000000000000003 /* CLITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1000000000000000000004 /* CLITests.swift */; };
 		09614BF857C294E1E344298C /* TCCPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC55385D89BDBD447395AF1 /* TCCPolicyTests.swift */; };
 		1E57D2CD1B0B3602E7FD9806 /* JamfProVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A216936077FDD709470D77 /* JamfProVersionTests.swift */; };
 		345B01D623FDBF55008838B6 /* TCCProfileExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B01D523FDBF55008838B6 /* TCCProfileExtensions.swift */; };
@@ -90,6 +92,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD1000000000000000000002 /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		CD1000000000000000000004 /* CLITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLITests.swift; sourceTree = "<group>"; };
 		0B5B34EC5FC52B5B4C9D0258 /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		15C8454BE335603AE6B55049 /* ExecutableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutableTests.swift; sourceTree = "<group>"; };
 		30877432D1026706D7E805DA /* UploadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManagerTests.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				5F90EBE32319992B00738D09 /* ModelTests.swift */,
+				CD1000000000000000000004 /* CLITests.swift */,
 				C0E0384327A30D6B00A23FA2 /* PPPCServicesManagerTests.swift */,
 				C01BEDB928636F57001B0B3B /* SemanticVersionTests.swift */,
 				15C8454BE335603AE6B55049 /* ExecutableTests.swift */,
@@ -320,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				6EC409DD214D65BC00BE4F17 /* AppDelegate.swift */,
+				CD1000000000000000000002 /* CLI.swift */,
 				6EC40A11214DF8FE00BE4F17 /* SecurityWrapper.swift */,
 				6E651CC623143969001CC974 /* Views */,
 				6EC40A1E214EF89600BE4F17 /* View Controllers */,
@@ -571,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07961E228749A36007B98A7 /* TokenTests.swift in Sources */,
+				CD1000000000000000000003 /* CLITests.swift in Sources */,
 				34DED4D423FDCAFD00C53FB9 /* SwiftyCMSDecoder.swift in Sources */,
 				C0A2B5422B1A5D5C0007F510 /* JamfProAPIClientTests.swift in Sources */,
 				C07961E428749A51007B98A7 /* NetworkAuthManagerTests.swift in Sources */,
@@ -615,6 +622,7 @@
 				6EC409F5214D95D200BE4F17 /* TCCProfile.swift in Sources */,
 				6EC40A12214DF8FE00BE4F17 /* SecurityWrapper.swift in Sources */,
 				6EC409DE214D65BC00BE4F17 /* AppDelegate.swift in Sources */,
+				CD1000000000000000000001 /* CLI.swift in Sources */,
 				345B01D623FDBF55008838B6 /* TCCProfileExtensions.swift in Sources */,
 				6EC409F3214D8FFA00BE4F17 /* TCCProfileViewController.swift in Sources */,
 				6E6216F9215321CE0043DF18 /* OpenViewController.swift in Sources */,

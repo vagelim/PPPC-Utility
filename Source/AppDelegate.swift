@@ -28,6 +28,25 @@
 import Cocoa
 
 @main
+struct PPPCUtilityEntryPoint {
+    static func main() async {
+        let arguments = Array(CommandLine.arguments.dropFirst())
+        if arguments.first == "--cli" {
+            do {
+                if let output = try await PPPCCommandLine.run(arguments: Array(arguments.dropFirst())) {
+                    print(output)
+                }
+            } catch {
+                FileHandle.standardError.write(Data("error: \(error.localizedDescription)\n".utf8))
+                exit(EXIT_FAILURE)
+            }
+        } else {
+            let status = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
+            exit(status)
+        }
+    }
+}
+
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {}
